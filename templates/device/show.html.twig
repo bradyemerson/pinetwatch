@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Device{% endblock %}
+
+{% block body %}
+    <h1>Device</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ device.id }}</td>
+            </tr>
+            <tr>
+                <th>Mac</th>
+                <td>{{ device.mac }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ device.name }}</td>
+            </tr>
+            <tr>
+                <th>Hostname</th>
+                <td>{{ device.hostname }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ device.type ? device.type|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Vendor</th>
+                <td>{{ device.vendor }}</td>
+            </tr>
+            <tr>
+                <th>Favorite</th>
+                <td>{{ device.favorite ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>FirstConnection</th>
+                <td>{{ device.firstConnection ? device.firstConnection|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>LastConnection</th>
+                <td>{{ device.lastConnection ? device.lastConnection|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>LastIP</th>
+                <td>{{ device.lastIP }}</td>
+            </tr>
+            <tr>
+                <th>AlertDeviceDown</th>
+                <td>{{ device.alertDeviceDown ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsGuest</th>
+                <td>{{ device.isGuest ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsNewDevice</th>
+                <td>{{ device.isNewDevice ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('device_index') }}">back to list</a>
+
+    <a href="{{ path('device_edit', {'id': device.id}) }}">edit</a>
+
+    {{ include('device/_delete_form.html.twig') }}
+{% endblock %}

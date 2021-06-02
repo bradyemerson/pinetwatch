@@ -1,0 +1,6 @@
+{
+    "intelephense.environment.documentRoot": "src",
+    "intelephense.environment.includePaths": [
+        "vendor"
+    ]
+}

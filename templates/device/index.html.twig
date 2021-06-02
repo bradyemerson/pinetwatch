@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Device index{% endblock %}
+
+{% block body %}
+    <h1>Device index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mac</th>
+                <th>Name</th>
+                <th>Hostname</th>
+                <th>Type</th>
+                <th>Vendor</th>
+                <th>Favorite</th>
+                <th>FirstConnection</th>
+                <th>LastConnection</th>
+                <th>LastIP</th>
+                <th>AlertDeviceDown</th>
+                <th>IsGuest</th>
+                <th>IsNewDevice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for device in devices %}
+            <tr>
+                <td>{{ device.id }}</td>
+                <td>{{ device.mac }}</td>
+                <td>{{ device.name }}</td>
+                <td>{{ device.hostname }}</td>
+                <td>{{ device.type ? device.type|join(', ') : '' }}</td>
+                <td>{{ device.vendor }}</td>
+                <td>{{ device.favorite ? 'Yes' : 'No' }}</td>
+                <td>{{ device.firstConnection ? device.firstConnection|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ device.lastConnection ? device.lastConnection|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ device.lastIP }}</td>
+                <td>{{ device.alertDeviceDown ? 'Yes' : 'No' }}</td>
+                <td>{{ device.isGuest ? 'Yes' : 'No' }}</td>
+                <td>{{ device.isNewDevice ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('device_show', {'id': device.id}) }}">show</a>
+                    <a href="{{ path('device_edit', {'id': device.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('device_new') }}">Create new</a>
+{% endblock %}
