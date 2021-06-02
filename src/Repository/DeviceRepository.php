@@ -45,4 +45,31 @@ class DeviceRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function merge(Device $a, Device $b) {
+        if ($b->getLastIP()) {
+            $a->setLastIP($b->getLastIP());
+        }
+        if ($b->getVendor()) {
+            $a->setVendor($b->getVendor());
+        }
+        if ($b->getLastConnection()) {
+            $a->setLastConnection($b->getLastConnection());
+        }
+        if ($b->getIsWired() !== null) {
+            $a->setIsWired($b->getIsWired());
+        }
+        if ($b->getSignal()) {
+            $a->setSignal($b->getSignal());
+        }
+        if ($b->getPort()) {
+            $a->setPort($b->getPort());
+        }
+        if ($b->getSatisfaction()) {
+            $a->setSatisfaction($b->getSatisfaction());
+        }
+        if ($b->getIsGuest() !== null) {
+            $a->setIsGuest($b->getIsGuest());
+        }
+    }
 }

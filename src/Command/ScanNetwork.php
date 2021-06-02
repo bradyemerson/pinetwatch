@@ -1,7 +1,7 @@
 <?php
 namespace App\Command;
 
-use App\Event\ArpNetworkScan;
+use App\Entity\Device;
 use App\Event\NetworkScanBeginEvent;
 use App\Repository\DeviceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -65,7 +65,11 @@ class ScanNetwork extends Command
         foreach($devices as $device) {
             $remoteDevice = $this->deviceRepository->findOneByMac($device->getMac());
             if (!$remoteDevice) {
+                $device->setIsNewDevice(true);
                 $this->entityManager->persist($device);
+            } else {
+                $this->deviceRepository->merge($remoteDevice, $device);
+                $this->entityManager->persist($remoteDevice);
             }
         }
         $this->entityManager->flush();
