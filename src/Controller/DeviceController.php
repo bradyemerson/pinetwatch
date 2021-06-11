@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Device;
-use App\Form\DeviceType;
+use App\Form\Device1Type;
 use App\Repository\DeviceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,11 +21,11 @@ class DeviceController extends AbstractController
         ]);
     }
 
-    /* #[Route('/new', name: 'device_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'device_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $device = new Device();
-        $form = $this->createForm(DeviceType::class, $device);
+        $form = $this->createForm(Device1Type::class, $device);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -40,7 +40,7 @@ class DeviceController extends AbstractController
             'device' => $device,
             'form' => $form->createView(),
         ]);
-    } */
+    }
 
     #[Route('/{id}', name: 'device_show', methods: ['GET'])]
     public function show(Device $device): Response
@@ -53,7 +53,7 @@ class DeviceController extends AbstractController
     #[Route('/{id}/edit', name: 'device_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Device $device): Response
     {
-        $form = $this->createForm(DeviceType::class, $device);
+        $form = $this->createForm(Device1Type::class, $device);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

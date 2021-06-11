@@ -28,24 +28,19 @@ class Event
     private $dateTime;
 
     /**
-     * @ORM\Column(type="array")
-     */
-    private $type = [];
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $additionalInfo;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $iSNew;
+    private $eventType;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isNew;
+    private $isPendingEmail = true;
 
     public function getId(): ?int
     {
@@ -76,18 +71,6 @@ class Event
         return $this;
     }
 
-    public function getType(): ?array
-    {
-        return $this->type;
-    }
-
-    public function setType(array $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getAdditionalInfo(): ?string
     {
         return $this->additionalInfo;
@@ -100,14 +83,26 @@ class Event
         return $this;
     }
 
-    public function getISNew(): ?string
+    public function getEventType(): ?string
     {
-        return $this->iSNew;
+        return $this->eventType;
     }
 
-    public function setISNew(string $iSNew): self
+    public function setEventType(string $eventType): self
     {
-        $this->iSNew = $iSNew;
+        $this->eventType = $eventType;
+
+        return $this;
+    }
+
+    public function getIsPendingEmail(): ?bool
+    {
+        return $this->isPendingEmail;
+    }
+
+    public function setIsPendingEmail(bool $isPendingEmail): self
+    {
+        $this->isPendingEmail = $isPendingEmail;
 
         return $this;
     }

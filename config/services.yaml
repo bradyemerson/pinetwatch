@@ -35,3 +35,7 @@ services:
             $useHttps: '%env(resolve:APP_UNIFI_USE_HTTPS)%'
             $username: '%env(resolve:APP_UNIFI_USERNAME)%'
             $password: '%env(resolve:APP_UNIFI_PASSWORD)%'
+    
+    Symfony\Component\Notifier\Bridge\Pushbullet\PushbulletTransportFactory:
+        parent: 'notifier.transport_factory.abstract'
+        tags: ['chatter.transport_factory']

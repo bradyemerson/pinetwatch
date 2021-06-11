@@ -25,15 +25,15 @@
             </tr>
             <tr>
                 <th>Type</th>
-                <td>{{ device.type ? device.type|join(', ') : '' }}</td>
+                <td>{{ device.type }}</td>
             </tr>
             <tr>
                 <th>Vendor</th>
                 <td>{{ device.vendor }}</td>
             </tr>
             <tr>
-                <th>Favorite</th>
-                <td>{{ device.favorite ? 'Yes' : 'No' }}</td>
+                <th>IsFavorite</th>
+                <td>{{ device.isFavorite ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>FirstConnection</th>
@@ -58,6 +58,26 @@
             <tr>
                 <th>IsNewDevice</th>
                 <td>{{ device.isNewDevice ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsWired</th>
+                <td>{{ device.isWired ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Port</th>
+                <td>{{ device.port }}</td>
+            </tr>
+            <tr>
+                <th>Satisfaction</th>
+                <td>{{ device.satisfaction }}</td>
+            </tr>
+            <tr>
+                <th>Signal</th>
+                <td>{{ device.signal }}</td>
+            </tr>
+            <tr>
+                <th>IdentifiedBy</th>
+                <td>{{ device.identifiedBy }}</td>
             </tr>
         </tbody>
     </table>

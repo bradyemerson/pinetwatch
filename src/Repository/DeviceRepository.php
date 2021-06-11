@@ -22,19 +22,20 @@ class DeviceRepository extends ServiceEntityRepository
     // /**
     //  * @return Device[] Returns an array of Device objects
     //  */
-    /*
-    public function findByMac($value)
+
+    public function findAlertDeviceDown($macs)
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $queryBuilder = $this->createQueryBuilder('d')
+            ->andWhere('d.alertDeviceDown = true')
         ;
+        if ($macs) {
+            $queryBuilder
+                ->andWhere('d.mac NOT IN (:macs)')
+                ->setParameter('macs', '\'' . implode('\',\'', $macs) . '\'')
+            ;
+        }
+        return $queryBuilder->getQuery()->getResult();
     }
-    */
 
     public function findOneByMac($value): ?Device
     {

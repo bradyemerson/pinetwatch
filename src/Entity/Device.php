@@ -140,7 +140,7 @@ class Device
 
     public function getName(): ?string
     {
-        return $this->name;
+        return $this->name ? $this->name : $this->hostname;
     }
 
     public function setName(?string $name): self
