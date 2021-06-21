@@ -14,17 +14,22 @@ class DeviceType extends AbstractType
         $builder
             ->add('mac')
             ->add('name')
-            ->add('hostname')
+            // ->add('hostname')
             ->add('type')
             ->add('vendor')
-            ->add('favorite')
-            ->add('firstConnection')
-            ->add('lastConnection')
-            ->add('lastIP')
+            ->add('isFavorite')
+            // ->add('firstConnection')
+            // ->add('lastConnection')
+            // ->add('lastIP')
             ->add('alertDeviceDown')
             ->add('isGuest')
             ->add('isNewDevice')
-            ->add('network')
+            // ->add('isWired')
+            // ->add('port')
+            // ->add('satisfaction')
+            // ->add('signal')
+            // ->add('identifiedBy')
+            // ->add('network')
         ;
     }
 

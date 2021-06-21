@@ -1,0 +1,22 @@
+ARG PHP_VERSION=8.0
+
+FROM php:${PHP_VERSION}-fpm-alpine
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+RUN apk update && \
+    apk add git zlib-dev zip unzip libzip-dev libxslt-dev && \
+    docker-php-ext-install zip && \
+    docker-php-ext-install xsl
+
+COPY . /var/www/symfony
+WORKDIR /var/www/symfony
+
+RUN echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
+
+RUN curl --silent --show-error https://getcomposer.org/installer | php && \
+    php composer.phar install --prefer-dist --no-progress --no-suggest --optimize-autoloader --classmap-authoritative  --no-interaction && \
+    php composer.phar clear-cache
+    # rm -rf /usr/src/php
+
+# CMD ["php", "./bin/console", "app:scan-network"]

@@ -19,6 +19,16 @@ class NetworkRepository extends ServiceEntityRepository
         parent::__construct($registry, Network::class);
     }
 
+    public function findOneByName($value): ?Network
+    {
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.name = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Network[] Returns an array of Network objects
     //  */

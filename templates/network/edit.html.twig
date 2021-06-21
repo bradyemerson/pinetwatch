@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Network{% endblock %}
+
+{% block body %}
+    <h1>Edit Network</h1>
+
+    {{ include('network/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('network_index') }}">back to list</a>
+
+    {{ include('network/_delete_form.html.twig') }}
+{% endblock %}

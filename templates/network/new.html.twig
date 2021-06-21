@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Network{% endblock %}
+
+{% block body %}
+    <h1>Create new Network</h1>
+
+    {{ include('network/_form.html.twig') }}
+
+    <a href="{{ path('network_index') }}">back to list</a>
+{% endblock %}

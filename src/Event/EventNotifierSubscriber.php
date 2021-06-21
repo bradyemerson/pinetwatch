@@ -21,22 +21,29 @@ class EventNotifierSubscriber implements EventSubscriberInterface
     }
 
     private NotifierInterface $notifierInterface;
+    private bool $sendNotifications = true;
 
     public function __construct(NotifierInterface $notifierInterface)
     {
         $this->notifierInterface = $notifierInterface;
     }
 
+    public function setSendNotifications(bool $val) {
+        $this->sendNotifications = $val;
+    }
+
     public function onDeviceNewEvent(DeviceNewEvent $event)
     {
         $device = $event->getDevice();
-        $subject = sprintf('New Device Alert: %s (%s)', $device->getName(), $device->getLastIP());
-        $content = $subject;
-        $notification = (new Notification($subject))
-            ->content($content)
-            ->importance(Notification::IMPORTANCE_HIGH);
+        if ($this->sendNotifications) {
+            $subject = sprintf('New Device Alert: %s (%s)', $device->getName(), $device->getLastIP());
+            $content = $subject;
+            $notification = (new Notification($subject))
+                ->content($content)
+                ->importance(Notification::IMPORTANCE_HIGH);
 
-        $this->notifierInterface->send($notification);
+            $this->notifierInterface->send($notification);
+        }
     }
 
     public function onDeviceDownEvent(DeviceDownEvent $event)

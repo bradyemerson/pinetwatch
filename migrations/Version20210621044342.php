@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210610033011 extends AbstractMigration
+final class Version20210621044342 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -24,7 +24,7 @@ final class Version20210610033011 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_92FB68E34128B91 ON device (network_id)');
         $this->addSql('CREATE TABLE event (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, device_id INTEGER DEFAULT NULL, date_time DATETIME NOT NULL, additional_info VARCHAR(255) DEFAULT NULL, event_type VARCHAR(255) NOT NULL, is_pending_email BOOLEAN NOT NULL)');
         $this->addSql('CREATE INDEX IDX_3BAE0AA794A4C7D4 ON event (device_id)');
-        $this->addSql('CREATE TABLE network (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, is_guest BOOLEAN NOT NULL)');
+        $this->addSql('CREATE TABLE network (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, is_guest BOOLEAN DEFAULT NULL)');
     }
 
     public function down(Schema $schema): void
