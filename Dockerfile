@@ -1,5 +1,6 @@
 ARG PHP_VERSION=8.0
 
+# FROM php:${PHP_VERSION}-alpine
 FROM php:${PHP_VERSION}-apache
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -14,6 +15,7 @@ COPY . /var/www/symfony
 WORKDIR /var/www/symfony
 
 RUN sed -ri -e 's!80!8080!g' /etc/apache2/sites-available/*.conf && \
+    sed -ri -e 's!80!8080!g' /etc/apache2/ports.conf && \
     sed -ri -e 's!/var/www/html!/var/www/symfony/public!g' /etc/apache2/sites-available/*.conf && \
     sed -ri -e 's!/var/www/!/var/www/symfony/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
@@ -29,3 +31,5 @@ RUN mkdir -p /var/www/symfony/var && \
     chown -R www-data.www-data /var/www/symfony/var
 
 VOLUME /var/www/symfony/var
+
+# CMD ["bin/console", "server:run", "0.0.0.0"]
