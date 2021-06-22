@@ -25,3 +25,4 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php && \
 RUN mkdir -p /var/www/symfony/var && \
     chown -R www-data.www-data /var/www/symfony/var
 
+VOLUME /var/www/symfony/var
