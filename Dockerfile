@@ -17,6 +17,8 @@ RUN sed -ri -e 's!80!8080!g' /etc/apache2/sites-available/*.conf && \
     sed -ri -e 's!/var/www/html!/var/www/symfony/public!g' /etc/apache2/sites-available/*.conf && \
     sed -ri -e 's!/var/www/!/var/www/symfony/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
+EXPOSE 8080
+
 RUN echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
 
 RUN curl --silent --show-error https://getcomposer.org/installer | php && \
