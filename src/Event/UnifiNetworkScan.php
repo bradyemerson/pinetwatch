@@ -16,7 +16,7 @@ class UnifiNetworkScan implements EventSubscriberInterface
         ];
     }
 
-    private $unifiService;
+    private UnifiService $unifiService;
 
     public function __construct(UnifiService $unifiService)
     {
@@ -28,6 +28,12 @@ class UnifiNetworkScan implements EventSubscriberInterface
         $activeClients = $this->unifiService->getActiveClients();
 
         foreach ($activeClients as $result) {
+            if (!$result['ip']) {
+                echo 'Result missing IP: ';
+                var_dump($result);
+                continue;
+            }
+                
             $newDevice = new Device();
             $newDevice
                 ->setIdentifiedBy('unifi')
