@@ -28,7 +28,13 @@ class UnifiNetworkScan implements EventSubscriberInterface
         $activeClients = $this->unifiService->getActiveClients();
 
         foreach ($activeClients as $result) {
-            if (!$result['ip']) {
+            $ip = null;
+            if (array_key_exists('ip', $result)) {
+                $ip = $result['ip'];
+            } else if (array_key_exists('fixed_ip', $result)) {
+                $ip = $result['fixed_ip'];
+            }
+            if (!$ip) {
                 echo 'Result missing IP: ';
                 var_dump($result);
                 continue;
@@ -38,7 +44,7 @@ class UnifiNetworkScan implements EventSubscriberInterface
             $newDevice
                 ->setIdentifiedBy('unifi')
                 ->setMac($result['mac'])
-                ->setLastIP($result['ip'])
+                ->setLastIP($ip)
                 ->setVendor($result['oui'])
                 ->setIsGuest($result['is_guest'])
                 ->setSatisfaction($result['satisfaction'])
