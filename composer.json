@@ -42,6 +42,7 @@
         "symfony/property-access": "6.1.*",
         "symfony/property-info": "6.1.*",
         "symfony/proxy-manager-bridge": "6.1.*",
+        "symfony/runtime": "6.1.*",
         "symfony/security-bundle": "6.1.*",
         "symfony/serializer": "6.1.*",
         "symfony/string": "6.1.*",
@@ -73,7 +74,8 @@
         },
         "sort-packages": true,
         "allow-plugins": {
-            "symfony/flex": true
+            "symfony/flex": true,
+            "symfony/runtime": true
         }
     },
     "autoload": {
@@ -93,6 +95,8 @@
     },
     "scripts": {
         "auto-scripts": {
+			"cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

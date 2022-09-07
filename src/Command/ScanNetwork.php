@@ -56,7 +56,7 @@ class ScanNetwork extends Command
             // the full command description shown when running the command with
             // the "--help" option
             ->setHelp('')
-            ->addOption('no-notifications', 's', InputOption::VALUE_NONE, 'Supress New Device Notifications');
+            ->addOption('no-notifications', 's', InputOption::VALUE_NONE, 'Suppress New Device Notifications');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

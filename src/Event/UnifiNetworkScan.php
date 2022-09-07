@@ -47,8 +47,11 @@ class UnifiNetworkScan implements EventSubscriberInterface
                 ->setLastIP($ip)
                 ->setVendor($result['oui'])
                 ->setIsGuest($result['is_guest'])
-                ->setSatisfaction($result['satisfaction'])
-                ->setNetworkString($result['network']);
+                ->setSatisfaction($result['satisfaction']);
+            
+            if (array_key_exists('network', $result)) {
+                $newDevice->setNetworkString($result['network']);
+            }
 
             if (array_key_exists('hostname', $result)) {
                 $newDevice->setHostname($result['hostname']);
